@@ -1,0 +1,620 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Data621\_Assignment2},
+            pdfauthor={Ritesh Lohiya},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Data621\_Assignment2}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Ritesh Lohiya}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{June 23, 2018}
+
+
+\begin{document}
+\maketitle
+
+Overview In this homework assignment, you will work through various
+classification metrics. You will be asked to create functions in R to
+carry out the various calculations. You will also investigate some
+functions in packages that will let you obtain the equivalent results.
+Finally, you will create graphical output that also can be used to
+evaluate the output of classification models, such as binary logistic
+regression. \#
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(caret)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: lattice
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(pROC)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Type 'citation("pROC")' for a citation.
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'pROC'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     cov, smooth, var
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Download the classification output data set (attached in Blackboard to
+  the assignment).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/Riteshlohiya/Data621-Assignment2/master/classification-output-data.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{","}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
+
+\KeywordTok{summary}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     pregnant         glucose        diastolic        skinfold   
+##  Min.   : 0.000   Min.   : 57.0   Min.   : 38.0   Min.   : 0.0  
+##  1st Qu.: 1.000   1st Qu.: 99.0   1st Qu.: 64.0   1st Qu.: 0.0  
+##  Median : 3.000   Median :112.0   Median : 70.0   Median :22.0  
+##  Mean   : 3.862   Mean   :118.3   Mean   : 71.7   Mean   :19.8  
+##  3rd Qu.: 6.000   3rd Qu.:136.0   3rd Qu.: 78.0   3rd Qu.:32.0  
+##  Max.   :15.000   Max.   :197.0   Max.   :104.0   Max.   :54.0  
+##     insulin            bmi           pedigree           age       
+##  Min.   :  0.00   Min.   :19.40   Min.   :0.0850   Min.   :21.00  
+##  1st Qu.:  0.00   1st Qu.:26.30   1st Qu.:0.2570   1st Qu.:24.00  
+##  Median :  0.00   Median :31.60   Median :0.3910   Median :30.00  
+##  Mean   : 63.77   Mean   :31.58   Mean   :0.4496   Mean   :33.31  
+##  3rd Qu.:105.00   3rd Qu.:36.00   3rd Qu.:0.5800   3rd Qu.:41.00  
+##  Max.   :543.00   Max.   :50.00   Max.   :2.2880   Max.   :67.00  
+##      class         scored.class    scored.probability
+##  Min.   :0.0000   Min.   :0.0000   Min.   :0.02323   
+##  1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.11702   
+##  Median :0.0000   Median :0.0000   Median :0.23999   
+##  Mean   :0.3149   Mean   :0.1768   Mean   :0.30373   
+##  3rd Qu.:1.0000   3rd Qu.:0.0000   3rd Qu.:0.43093   
+##  Max.   :1.0000   Max.   :1.0000   Max.   :0.94633
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The data set has three key columns we will use: ??? class: the actual
+  class for the observation scored.class: the predicted class for the
+  observation (based on a threshold of 0.5) ??? scored.probability: the
+  predicted probability of success for the observation. Use the table()
+  function to get the raw confusion matrix for this scored dataset. Make
+  sure you understand the output. In particular, do the rows represent
+  the actual or predicted class? The columns?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r <-}\StringTok{ }\KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{scored.class,data}\OperatorTok{$}\NormalTok{class)}
+\NormalTok{knitr}\OperatorTok{::}\StringTok{ }\KeywordTok{kable}\NormalTok{(r)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+& 0 & 1\tabularnewline
+\midrule
+\endhead
+0 & 119 & 30\tabularnewline
+1 & 5 & 27\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Write a function that takes the data set as a dataframe, with actual
+  and predicted classifications identified, and returns the accuracy of
+  the predictions.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Accuracy <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data) \{}
+\NormalTok{tb =}\StringTok{ }\KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{class,data}\OperatorTok{$}\NormalTok{scored.class)}
+\NormalTok{TN=tb[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{TP=tb[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{FN=tb[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{FP=tb[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+  
+\KeywordTok{return}\NormalTok{((TP}\OperatorTok{+}\NormalTok{TN)}\OperatorTok{/}\NormalTok{(TP}\OperatorTok{+}\NormalTok{FP}\OperatorTok{+}\NormalTok{TN}\OperatorTok{+}\NormalTok{FN))}
+  
+\NormalTok{\}}
+\KeywordTok{Accuracy}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8066298
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Write a function that takes the data set as a dataframe, with actual
+  and predicted classifications identified, and returns the
+  classification error rate of the predictions.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CER <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data) \{}
+\NormalTok{tb =}\StringTok{ }\KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{class,data}\OperatorTok{$}\NormalTok{scored.class)}
+\NormalTok{TN=tb[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{TP=tb[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{FN=tb[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{FP=tb[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+  
+\KeywordTok{return}\NormalTok{((FP}\OperatorTok{+}\NormalTok{FN)}\OperatorTok{/}\NormalTok{(TP}\OperatorTok{+}\NormalTok{FP}\OperatorTok{+}\NormalTok{TN}\OperatorTok{+}\NormalTok{FN))}
+  
+\NormalTok{\}}
+
+\KeywordTok{CER}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1933702
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Write a function that takes the data set as a dataframe, with actual
+  and predicted classifications identified, and returns the precision of
+  the predictions.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Precision <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data) \{}
+\NormalTok{tb =}\StringTok{ }\KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{class,data}\OperatorTok{$}\NormalTok{scored.class)}
+\NormalTok{TP=tb[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{FP=tb[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+  
+\KeywordTok{return}\NormalTok{((TP)}\OperatorTok{/}\NormalTok{(TP}\OperatorTok{+}\NormalTok{FP))}
+  
+\NormalTok{\}}
+\KeywordTok{Precision}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.84375
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Write a function that takes the data set as a dataframe, with actual
+  and predicted classifications identified, and returns the sensitivity
+  of the predictions. Sensitivity is also known as recall.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Sensitivity <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data) \{}
+\NormalTok{tb =}\StringTok{ }\KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{class,data}\OperatorTok{$}\NormalTok{scored.class)}
+\NormalTok{TP=tb[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{FN=tb[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+  
+\KeywordTok{return}\NormalTok{((TP)}\OperatorTok{/}\NormalTok{(TP}\OperatorTok{+}\NormalTok{FN))}
+  
+\NormalTok{\}}
+
+\KeywordTok{Sensitivity}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4736842
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Write a function that takes the data set as a dataframe, with actual
+  and predicted classifications identified, and returns the specificity
+  of the predictions.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Specificity <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data) \{}
+\NormalTok{tb =}\StringTok{ }\KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{class,data}\OperatorTok{$}\NormalTok{scored.class)}
+\NormalTok{TN=tb[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{TP=tb[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{FN=tb[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{FP=tb[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+
+\KeywordTok{return}\NormalTok{((TN)}\OperatorTok{/}\NormalTok{(TN}\OperatorTok{+}\NormalTok{FP))}
+  
+\NormalTok{\}}
+\KeywordTok{Specificity}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9596774
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Write a function that takes the data set as a dataframe, with actual
+  and predicted classifications identified, and returns the F1 score of
+  the predictions.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F1_score <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data) \{}
+\NormalTok{tb =}\StringTok{ }\KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{class,data}\OperatorTok{$}\NormalTok{scored.class)}
+\NormalTok{TN=tb[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{TP=tb[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{FN=tb[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{FP=tb[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+  
+  
+\NormalTok{Precision =}\StringTok{ }\NormalTok{(TP)}\OperatorTok{/}\NormalTok{(TP}\OperatorTok{+}\NormalTok{FP)}
+\NormalTok{Sensitivity =}\StringTok{ }\NormalTok{(TP)}\OperatorTok{/}\NormalTok{(TP}\OperatorTok{+}\NormalTok{FN)}
+\NormalTok{Precision =(TP)}\OperatorTok{/}\NormalTok{(TP}\OperatorTok{+}\NormalTok{FP)}
+  
+\KeywordTok{return}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{Precision}\OperatorTok{*}\NormalTok{Sensitivity)}\OperatorTok{/}\NormalTok{(Precision}\OperatorTok{+}\NormalTok{Sensitivity))}
+  
+\NormalTok{\}}
+\KeywordTok{F1_score}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6067416
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Before we move on, let's consider a question that was asked: What are
+  the bounds on the F1 score? Show that the F1 score will always be
+  between 0 and 1. (Hint: If 0 \textless{} ???? \textless{} 1 and 0
+  \textless{} ???? \textless{} 1 then ???????? \textless{} ????.)
+\end{enumerate}
+
+Both Precision and Sensitivity used to calculate F1 score are bounded
+between 0 and 1 , so F1 score will be between 0 and 1.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  Write a function that generates an ROC curve from a data set with a
+  true classification column (class in our example) and a probability
+  column (scored.probability in our example). Your function should
+  return a list that includes the plot of the ROC curve and a vector
+  that contains the calculated area under the curve (AUC). Note that I
+  recommend using a sequence of thresholds ranging from 0 to 1 at 0.01
+  intervals.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ROC =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(labels, scores)\{}
+\NormalTok{  labels =}\StringTok{ }\NormalTok{labels[}\KeywordTok{order}\NormalTok{(scores, }\DataTypeTok{decreasing=}\OtherTok{TRUE}\NormalTok{)]}
+\NormalTok{  result =}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{TPR=}\KeywordTok{cumsum}\NormalTok{(labels)}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(labels), }\DataTypeTok{FPR=}\KeywordTok{cumsum}\NormalTok{(}\OperatorTok{!}\NormalTok{labels)}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(}\OperatorTok{!}\NormalTok{labels), labels)}
+  
+\NormalTok{  FPR_df =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{diff}\NormalTok{(result}\OperatorTok{$}\NormalTok{FPR), }\DecValTok{0}\NormalTok{)}
+\NormalTok{  TPR_df =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{diff}\NormalTok{(result}\OperatorTok{$}\NormalTok{TPR), }\DecValTok{0}\NormalTok{)}
+\NormalTok{  AUC =}\StringTok{ }\KeywordTok{round}\NormalTok{(}\KeywordTok{sum}\NormalTok{(result}\OperatorTok{$}\NormalTok{TPR }\OperatorTok{*}\StringTok{ }\NormalTok{FPR_df) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(TPR_df }\OperatorTok{*}\StringTok{ }\NormalTok{FPR_df)}\OperatorTok{/}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+
+  \KeywordTok{plot}\NormalTok{(result}\OperatorTok{$}\NormalTok{FPR,result}\OperatorTok{$}\NormalTok{TPR,}\DataTypeTok{type=}\StringTok{"l"}\NormalTok{,}\DataTypeTok{main =}\StringTok{"ROC Curve"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"Sensitivity"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"1-Specificity"}\NormalTok{)}
+  \KeywordTok{abline}\NormalTok{(}\DataTypeTok{a=}\DecValTok{0}\NormalTok{,}\DataTypeTok{b=}\DecValTok{1}\NormalTok{)}
+  \KeywordTok{legend}\NormalTok{(.}\DecValTok{6}\NormalTok{,.}\DecValTok{2}\NormalTok{,AUC,}\DataTypeTok{title =} \StringTok{"AUC"}\NormalTok{)}
+  
+\NormalTok{\}}
+
+\KeywordTok{ROC}\NormalTok{(data}\OperatorTok{$}\NormalTok{class,data}\OperatorTok{$}\NormalTok{scored.probability)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Data621_Assignment_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\tightlist
+\item
+  Use your created R functions and the provided classification output
+  data set to produce all of the classification metrics discussed above.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Accuracy}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8066298
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{CER}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1933702
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Precision}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.84375
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Sensitivity}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4736842
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Specificity}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9596774
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{F1_score}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6067416
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{11}
+\tightlist
+\item
+  Investigate the caret package. In particular, consider the functions
+  confusionMatrix, sensitivity, and specificity. Apply the functions to
+  the data set. How do the results compare with your own functions?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{confusionMatrix}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(data}\OperatorTok{$}\NormalTok{scored.class), }\KeywordTok{as.factor}\NormalTok{(data}\OperatorTok{$}\NormalTok{class), }\DataTypeTok{positive =} \StringTok{"1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   0   1
+##          0 119  30
+##          1   5  27
+##                                           
+##                Accuracy : 0.8066          
+##                  95% CI : (0.7415, 0.8615)
+##     No Information Rate : 0.6851          
+##     P-Value [Acc > NIR] : 0.0001712       
+##                                           
+##                   Kappa : 0.4916          
+##  Mcnemar's Test P-Value : 4.976e-05       
+##                                           
+##             Sensitivity : 0.4737          
+##             Specificity : 0.9597          
+##          Pos Pred Value : 0.8438          
+##          Neg Pred Value : 0.7987          
+##              Prevalence : 0.3149          
+##          Detection Rate : 0.1492          
+##    Detection Prevalence : 0.1768          
+##       Balanced Accuracy : 0.7167          
+##                                           
+##        'Positive' Class : 1               
+## 
+\end{verbatim}
+
+The results are similar.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{12}
+\tightlist
+\item
+  Investigate the pROC package. Use it to generate an ROC curve for the
+  data set. How do the results compare with your own functions?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{roc}\NormalTok{(data}\OperatorTok{$}\NormalTok{class,data}\OperatorTok{$}\NormalTok{scored.probability),}\DataTypeTok{print.auc=}\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{ROC}\NormalTok{(data}\OperatorTok{$}\NormalTok{class,data}\OperatorTok{$}\NormalTok{scored.probability)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Data621_Assignment_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+
+\end{document}
