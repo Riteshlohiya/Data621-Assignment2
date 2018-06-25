@@ -3,9 +3,7 @@ title: "Data621_Assignment2"
 author: "Ritesh Lohiya"
 date: "June 23, 2018"
 output:
- pdf_document:
-   latex_engine: xelatex
- html_document:
+  html_document:
    df_print: paged
 
 ---
